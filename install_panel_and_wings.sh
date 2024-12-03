@@ -52,18 +52,18 @@ sudo systemctl restart mariadb
 echo "Setting up database..."
 sudo mysql -u root -e "DROP DATABASE IF EXISTS panel;"
 sudo mysql -u root -e "CREATE DATABASE panel;"
-sudo mysql -u root -e "DROP USER IF EXISTS 'pterodactyl'@'127.0.0.1';"
-sudo mysql -u root -e "CREATE USER 'pterodactyl'@'127.0.0.1' IDENTIFIED BY 'securepassword';"
-sudo mysql -u root -e "GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyl'@'127.0.0.1' WITH GRANT OPTION;"
+sudo mysql -u root -e "DROP USER IF EXISTS 'pterodactyl'@'23.230.3.1';"
+sudo mysql -u root -e "CREATE USER 'pterodactyl'@'23.230.3.1' IDENTIFIED BY 'agenth14@vortexhosting.co';"
+sudo mysql -u root -e "GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyl'@'23.230.3.1' WITH GRANT OPTION;"
 
 # No user or password needed since root is used without a password.
 
 echo "Configuring Pterodactyl environment file..."
-sudo sed -i "s|DB_HOST=.*|DB_HOST=127.0.0.1|" /var/www/pterodactyl/.env
+sudo sed -i "s|DB_HOST=.*|DB_HOST=23.230.3.1|" /var/www/pterodactyl/.env
 sudo sed -i "s|DB_PORT=.*|DB_PORT=3306|" /var/www/pterodactyl/.env
 sudo sed -i "s|DB_DATABASE=.*|DB_DATABASE=panel|" /var/www/pterodactyl/.env
 sudo sed -i "s|DB_USERNAME=.*|DB_USERNAME=pterodactyl|" /var/www/pterodactyl/.env
-sudo sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=securepassword|" /var/www/pterodactyl/.env
+sudo sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=Vortexadmin2000|" /var/www/pterodactyl/.env
 
 # Configure .env file with localhost and no database password
 echo "Updating environment configuration..."
@@ -71,11 +71,11 @@ sudo sed -i "s|^APP_SERVICE_AUTHOR=.*|APP_SERVICE_AUTHOR=admin@admin.com|" /var/
 sudo sed -i "s|^APP_URL=.*|APP_URL=http://localhost|" /var/www/pterodactyl/.env
 
 sudo sed -i "s|^DB_CONNECTION=.*|DB_CONNECTION=mysql|" /var/www/pterodactyl/.env
-sudo sed -i "s|^DB_HOST=.*|DB_HOST=127.0.0.1|" /var/www/pterodactyl/.env
+sudo sed -i "s|^DB_HOST=.*|DB_HOST=23.230.3.1|" /var/www/pterodactyl/.env
 sudo sed -i "s|^DB_PORT=.*|DB_PORT=3306|" /var/www/pterodactyl/.env
 sudo sed -i "s|^DB_DATABASE=.*|DB_DATABASE=panel|" /var/www/pterodactyl/.env
 sudo sed -i "s|^DB_USERNAME=.*|DB_USERNAME=pterodactyl|" /var/www/pterodactyl/.env
-sudo sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=securepassword|" /var/www/pterodactyl/.env
+sudo sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=Vortexadmin2000|" /var/www/pterodactyl/.env
 
 
 
@@ -164,7 +164,7 @@ sudo apt clean
 
 echo "Admin user created successfully!"
 
-echo "Pterodactyl installation completed! Access it at http://localhost or http://127.0.0.1"
+echo "Pterodactyl installation completed! Access it at http://23.230.3.1"
 echo "user: admin"
 echo "pass: Admin1234"
 echo "Please change user password before continueing"
@@ -271,7 +271,7 @@ else
 fi
 
 echo "adding allowed orgins:"
-echo -e "allowed_origins:\n  - http://localhost\n  - http://127.0.0.1" | sudo tee -a /etc/pterodactyl/config.yml
+echo -e "allowed_origins:\n  - http://23.230.3.1\n  - http://23.230.3.1" | sudo tee -a /etc/pterodactyl/config.yml
 echo ""
 echo "go to server area and configure server to your liking."
 
